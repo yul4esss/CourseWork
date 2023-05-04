@@ -4,12 +4,13 @@
 #include "Osoba.h"
 #include "Coworker.h"
 #include "Salary.h"
-
+#include "CustomIterator.h"
 
 using namespace std;
 
 int main() {
 
+	system("chcp 1251");
 	// Встановлення мови введення та виведення
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
@@ -49,6 +50,18 @@ int main() {
 	salary.calculateSalary();
 	cout << salary.printCoworkersInfo();
 
+	Coworker coworkers[3] = {
+		Coworker("Ivanov", "Ivan", "Ivanovich", "01.01.1990", 'M', 1, 2000.0, 2, 40.0, 50.0),
+		Coworker("Petrov", "Petr", "Petrovich", "02.02.1991", 'M', 2, 2500.0, 3, 45.0, 55.0),
+		Coworker("Sidorov", "Sidor", "Sidorovich", "03.03.1992", 'M', 3, 3000.0, 4, 50.0, 60.0)
+	};
+
+	CustomIterator begin(coworkers, 0, 3);
+	CustomIterator end(coworkers + 3, 3, 3);
+
+	for (CustomIterator it = begin; it != end; it++) {
+		cout << (*it).GetSurname() << endl;
+	}
 
 	return 0;
 }
