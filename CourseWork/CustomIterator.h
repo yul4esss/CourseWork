@@ -13,39 +13,21 @@ public:
 		this->array = array;
 		this->index = index;
 		this->size = size;
-		
 	}
 
-	CustomIterator& operator++() {
-		index++;
-		return *this;
-	}
+	CustomIterator& operator++();
 
-	CustomIterator& operator++(int) {
-		CustomIterator it = *this;
-		++(*this);
-		return *this;
-	}
+	CustomIterator& operator++(int);
 
-	Coworker& operator*() const {
-		return array[index];
-	}
+	Coworker& operator*() const;
 
-	Coworker* operator -> () const {
-		return &array[index];
-	}
+	Coworker* operator -> () const;
 
-	Coworker* operator[](int index) { 
-		return array + index; 
-	}
+	Coworker* operator[](int index);
 
-	bool operator==(const CustomIterator& other) const {
-		return index == other.index;
-	}
+	bool operator==(const CustomIterator& other) const;
 
-	bool operator!=(const CustomIterator& other) const {
-		return !(*this == other);
-	}
+	bool operator!=(const CustomIterator& other) const;
 
 };
 

@@ -5,6 +5,7 @@
 #include "Coworker.h"
 #include "Salary.h"
 #include "CustomIterator.h"
+#include "CustomException.h"
 
 using namespace std;
 
