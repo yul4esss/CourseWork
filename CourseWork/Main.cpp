@@ -1,20 +1,24 @@
 #include <Windows.h>
 #include <iostream>
 #include <string>
+#include <cctype>
 #include "Osoba.h"
 #include "Coworker.h"
 #include "Salary.h"
 #include "CustomIterator.h"
 #include "CustomException.h"
+#include "Menu.h"
 
 using namespace std;
 
+
 int main() {
 
-	system("chcp 1251");
 	// Встановлення мови введення та виведення
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
+
+	cout << "It's an office application for editing and getting information about employees" << endl;
 
 	Osoba personOne("Сапса", "Юлія", "Петрівна", "11.02.2004", 'Ж');
 	cout << personOne.printPersonInfo() << endl;
@@ -51,18 +55,24 @@ int main() {
 	salary.calculateSalary();
 	cout << salary.printCoworkersInfo();
 
-	Coworker coworkers[3] = {
-		Coworker("Ivanov", "Ivan", "Ivanovich", "01.01.1990", 'M', 1, 2000.0, 2, 40.0, 50.0),
-		Coworker("Petrov", "Petr", "Petrovich", "02.02.1991", 'M', 2, 2500.0, 3, 45.0, 55.0),
-		Coworker("Sidorov", "Sidor", "Sidorovich", "03.03.1992", 'M', 3, 3000.0, 4, 50.0, 60.0)
-	};
+	/*const int ar = 3;
+	Coworker coworkers[ar];
+
+	for (int i = 0; i < ar; i++) {
+		cout << "Введіть дані про співробітника " << i + 1 << ":" << endl;
+		cin >> coworkers[i];
+	}
 
 	CustomIterator begin(coworkers, 0, 3);
 	CustomIterator end(coworkers + 3, 3, 3);
 
 	for (CustomIterator it = begin; it != end; it++) {
 		cout << (*it).GetSurname() << endl;
-	}
+	}*/
+
+	Menu menu;
+	menu.displayMenu();
+
 
 	return 0;
 }
