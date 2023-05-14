@@ -7,6 +7,8 @@ using namespace std;
 class Osoba
 {
 protected:
+	Osoba* osobaList; // Вказівник на динамічний масив
+	int amountOfPersons;
 	std::string surname;
 	std::string name;
 	std::string middleName;
@@ -39,6 +41,11 @@ public:
 		middleName = other.middleName;
 		birthDate = other.birthDate;
 		gender = other.gender;
+	}
+
+	Osoba(int size) {
+		amountOfPersons = 0;
+		osobaList = new Osoba[size];
 	}
 
 	// Деструктор

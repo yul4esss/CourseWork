@@ -11,5 +11,6 @@ class Menu
 	private: int choice;
 	public:
 		void displayMenu();
+		void checkInputValidity(int &value);
 };
 

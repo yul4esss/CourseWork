@@ -2,13 +2,17 @@
 
 using namespace std;
 
-void NotNumberException() {
+
+void Menu::checkInputValidity(int &value)
+{
+	cin >> value;
 	if (!cin) {
 		cin.clear();
 		while (cin.get() != '\n')
 			continue;
-		throw CustomException("Невірний тип даних. Введено нечислове значення.");
+		throw CustomException("Неправильний тип даних. Введено нечислове значення, спробуйте ще раз");
 	}
+
 }
 
 void Menu::displayMenu()
@@ -23,68 +27,58 @@ void Menu::displayMenu()
 	cout << "|                 Меню                   |" << endl;
 	cout << "|                                        |" << endl;
 	cout << "------------------------------------------" << endl;
-	cout << "\n        Введіть дані про працівників   " << endl << endl;
+
+	int choice;
+	//int numberOfCoworkers;
+	int numberOfPersons;
+	Osoba* persons;
+	Osoba person;
+	Coworker coworker;
+	//Salary salary(numberOfCoworkers);
+
 	do {
-		try {
-			
-			
-			cout << "Введіть кількість працівників" << endl;
+		try {			
+			cout << "Введіть опцію" << endl;
+			cout << "1. Робота з класом ОСОБА" << endl;
+			cout << "2. Робота з класом СПІВРОБІТНИК" << endl;
+			cout << "3. Робота з класом ЗАРПЛАТА" << endl;
 
-			int numberOfEmployees;
+			checkInputValidity(choice);
 
-			cin >> numberOfEmployees;
-
-			NotNumberException();
-
-			cout << "Будь ласка, заповність дані про працівників" << endl;
-
-			// Масив працівників
-			Coworker* coworkers = new Coworker[numberOfEmployees];
-			CustomIterator begin(coworkers, 0, numberOfEmployees);
-			CustomIterator end(coworkers + numberOfEmployees, numberOfEmployees, numberOfEmployees);
-
-			for (int i = 0; i < numberOfEmployees; i++) {
-				cout << "Введіть дані про співробітника " << i + 1 << ":" << endl;
-				cin >> coworkers[i];
-			}
-
-			for (CustomIterator it = begin; it != end; it++) {
-				cout << (*it).GetSurname() << endl;
-			}
-
-			cout << "2. Виконати дію 2" << endl;
-			cout << "3. Вийти" << endl;
-			cout << "Виберіть опцію: ";
-			cin >> choice;
-
-			if (!cin) {
-				cin.clear();
-				while (cin.get() != '\n')
-					continue;
-				throw CustomException("Невірний тип даних. Введено нечислове значення.");
-			}
-
-			
-
-			switch (choice) {
+			switch (choice)
+			{
 			case 1:
-				// Виконати дію 1
-				
+				cout << "Робота з класом ОСОБА" << endl;
+				cout << "Створіть об'єкт класу ОСОБА" << endl;
+				cin >> person;
+				cout << "Оберіть дію над об'єктом класу" << endl;
+				cout << "1. Додати новий об'єкт класу" << endl;
+				cout << "2. Продемонструвати конструктор ініціалізації" << endl;
+				cout << "3. Показати роботу конструктора копіювання" << endl;
+				cout << "4. Змінити значення для об'єкта" << endl;
+
+				checkInputValidity(choice);
+				switch (choice)
+				{
+				case 1:
+					cout << "Введіть кількість осіб" << endl;
+					checkInputValidity(numberOfPersons);
+
+					persons = new Osoba[numberOfPersons];
+					break;
+				default:
+					throw CustomException("Неправильна опція, спробуйте ще раз");
+					break;
+				}
 				break;
-			case 2:
-				// Виконати дію 2
-				cout << "Виконується дія 2" << endl;
-				break;
-			case 3:
-				// Вийти з програми
-				cout << "Програма завершує роботу." << endl;
-				return;
 			default:
-				throw CustomException("Невірна опція. Спробуйте ще раз.");
+				throw CustomException("Неправильна опція, спробуйте ще раз");
+				break;
 			}
 		}
 		catch (CustomException& ex) {
-			cout << "Помилка: " << ex.getError() << endl;
+			cerr<< "Помилка: " << ex.getError() << endl;
 		}
 	} while (true);
 }
+

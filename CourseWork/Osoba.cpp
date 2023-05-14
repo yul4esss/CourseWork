@@ -1,4 +1,5 @@
 #include "Osoba.h"
+#include "CustomException.h"
 #include <iostream>
 #include <string>
 
