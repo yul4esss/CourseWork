@@ -2,6 +2,7 @@
 #include <string>
 #include "Osoba.h"
 #include "Coworker.h"
+#include "CustomIterator.h"
 #include <cctype>
 
 
@@ -24,5 +25,14 @@ public:
     void addCoworkerToList(Coworker coworker);
     void calculateSalary();
     std::string printCoworkersInfo();
+
+    CustomIterator begin() {
+        return CustomIterator(coworkersListInfo, 0, amountOfCoworkers);
+    }
+
+    // Кінцевий ітератор
+    CustomIterator end() {
+        return CustomIterator(coworkersListInfo, amountOfCoworkers, amountOfCoworkers);
+    }
 
 };

@@ -16,6 +16,7 @@ public:
 		this->size = size;
 	}
 
+
 	CustomIterator& operator++();
 
 	CustomIterator& operator++(int);

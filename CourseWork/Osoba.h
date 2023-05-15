@@ -8,8 +8,7 @@ using namespace std;
 class Osoba
 {
 protected:
-	Osoba* osobaList; // ¬каз≥вник на динам≥чний масив
-	int amountOfPersons;
+
 	std::string surname;
 	std::string name;
 	std::string middleName;
@@ -54,6 +53,7 @@ public:
 	void checkDateFormat(const std::string& birthDate);
 
 	Osoba& operator = (const Osoba& other);
+
 
 	void operator () (std::string surname, std::string name, std::string middleName, std::string birthDate, std::string gender);
 

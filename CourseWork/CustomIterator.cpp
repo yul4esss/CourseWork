@@ -29,6 +29,7 @@ Coworker* CustomIterator::operator[](int index)
 	return array + index;
 }
 
+
 bool CustomIterator::operator==(const CustomIterator& other) const
 {
 	return index == other.index;

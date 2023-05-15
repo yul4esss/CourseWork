@@ -6,7 +6,7 @@
 #include "Salary.h"
 #include <cctype>
 
-
+using namespace std;
 
 class Menu
 {
@@ -17,14 +17,13 @@ class Menu
 
 		void checkInputValidity(int &value);
 
-		//void changePersonInfo(int& value, Osoba& o);
+		void changeOsobaData(Osoba& o);
+		void showOsobaFunctionality(int option);
 
 
-		void addPerson(Osoba*& people, int& peopleAmount);
-		void updatePersons(Osoba*& people, int peopleAmount);
+		void changeCoworkerData(Coworker& c);
+		void showCoworkerFunctionality(int option);
 
-		void changePersonInfo(Osoba* people, int peopleAmount);
-
-		//void showConstructorWork(Osoba& o, string srnm, string nm, string mdlnm, string bday, char gdr);
+		void showSalaryFunctionality(int option);
 };
 

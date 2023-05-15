@@ -155,3 +155,5 @@ std::ostream& operator<<(std::ostream& os, Coworker& coworker)
 
 	return os;
 }
+
+

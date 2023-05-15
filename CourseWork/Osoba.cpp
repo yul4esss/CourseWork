@@ -12,11 +12,11 @@ using namespace std;
 
 Osoba::Osoba()
 {
-	surname = "";
-	name = "";
-	middleName = "";
-	birthDate = "";
-	gender = "";
+	surname = "none";
+	name = "none";
+	middleName = "none";
+	birthDate = "none";
+	gender = "none";
 }
 
 Osoba::Osoba(std::string surname, std::string name, std::string middleName, std::string birthDate, std::string gender)
@@ -49,11 +49,6 @@ Osoba::Osoba(const Osoba& other)
 	gender = other.gender;
 }
 
-Osoba::Osoba(int size)
-{
-	amountOfPersons = 0;
-	osobaList = new Osoba[size]();
-}
 
 bool Osoba::containsDigit(const std::string& value)
 {
