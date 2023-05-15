@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Osoba.h"
+#include <cctype>
 
 class Coworker : public Osoba
 {
@@ -13,23 +14,10 @@ private:
 
 public:
 
-	Coworker() {
-		tableNumber = 0;
-		salary = 0.0;
-		experience = 0;
-		hoursWorked = 0.0;
-		salaryPerHour = 0.0;
-	}
+	Coworker();
 
-	Coworker(string surname, string name, string middleName, string birthDate, char gender,
-		int tableNumber, double salary, double experience, double hoursWorked, double salaryPerHour)
-		: Osoba(surname, name, middleName, birthDate, gender) {
-		this->tableNumber = tableNumber;
-		this->salary = salary;
-		this->experience = experience;
-		this->hoursWorked = hoursWorked;
-		this->salaryPerHour = salaryPerHour;
-	}
+	Coworker(string surname, string name, string middleName, string birthDate, string gender,
+		int tableNumber, double salary, double experience, double hoursWorked, double salaryPerHour);
 
 	// Конструктор копіювання
 	Coworker(const Coworker& other) {

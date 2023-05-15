@@ -1,5 +1,6 @@
 #pragma once
 #include "Coworker.h"
+#include <cctype>
 class CustomIterator
 {
 private:

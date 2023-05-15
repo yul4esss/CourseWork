@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 
+
 using namespace std;
 
 class Osoba
@@ -13,40 +14,19 @@ protected:
 	std::string name;
 	std::string middleName;
 	std::string birthDate;
-	char gender;
+	std::string gender;
 
 public:
 	// Конструктор за замовчуванням
-	Osoba() {
-		surname = "";
-		name = "";
-		middleName = "";
-		birthDate = "";
-		gender = ' ';
-	}
+	Osoba();
 
 	// Конструктор ініціалізації
-	Osoba(std::string surname, std::string name, std::string middleName, std::string birthDate, char gender) {
-		this->surname = surname;
-		this->name = name;
-		this->middleName = middleName;
-		this->birthDate = birthDate;
-		this->gender = gender;
-	}
+	Osoba(std::string surname, std::string name, std::string middleName, std::string birthDate, std::string gender);
 
 	// Конструктор копіювання
-	Osoba(const Osoba& other) {
-		surname = other.surname;
-		name = other.name;
-		middleName = other.middleName;
-		birthDate = other.birthDate;
-		gender = other.gender;
-	}
+	Osoba(const Osoba& other);
 
-	Osoba(int size) {
-		amountOfPersons = 0;
-		osobaList = new Osoba[size];
-	}
+	Osoba(int size);
 
 	// Деструктор
 	~Osoba() {}
@@ -56,22 +36,26 @@ public:
 	void SetName(std::string name);
 	void SetMiddleName(std::string middleName);
 	void SetBirthDate(std::string birthDate);
-	void SetGender(char gender);
+	void SetGender(std::string gender);
 
 	// Гетери для полів класу Osoba
 	std::string GetSurname();
 	std::string GetName();
 	std::string GetMiddleName();
 	std::string GetBirthDate();
-	char GetGender();
+	std::string GetGender();
 
 
 	// Вивід інформації про особу
 	virtual std::string printPersonInfo();
 
+	bool containsDigit(const std::string& value);
+
+	void checkDateFormat(const std::string& birthDate);
+
 	Osoba& operator = (const Osoba& other);
 
-	void operator () (std::string surname, std::string name, std::string middleName, std::string birthDate, char gender);
+	void operator () (std::string surname, std::string name, std::string middleName, std::string birthDate, std::string gender);
 
 	friend std::istream& operator>>(std::istream& is, Osoba& osoba);
 	friend std::ostream& operator<<(std::ostream& os, Osoba& osoba);

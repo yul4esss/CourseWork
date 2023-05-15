@@ -2,6 +2,7 @@
 #include <iostream>
 #include <exception>
 #include <string>
+#include <cctype>
 
 class CustomException : public std::exception
 {
@@ -11,6 +12,6 @@ private:
 public:
 	CustomException(const std::string& message) : error(message) { }
 
-	const char* getError();
+	const char* what() const noexcept override;
 };
 

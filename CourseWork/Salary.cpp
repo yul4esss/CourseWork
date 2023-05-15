@@ -3,6 +3,7 @@
 #include "Osoba.h"
 #include "Coworker.h"
 #include "Salary.h"
+#include <cctype>
 
 using namespace std;
 

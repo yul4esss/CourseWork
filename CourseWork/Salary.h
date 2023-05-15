@@ -2,6 +2,7 @@
 #include <string>
 #include "Osoba.h"
 #include "Coworker.h"
+#include <cctype>
 
 
 class Salary {

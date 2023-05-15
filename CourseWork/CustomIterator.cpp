@@ -1,4 +1,5 @@
 #include "CustomIterator.h"
+#include <cctype>
 
 CustomIterator& CustomIterator::operator++()
 {

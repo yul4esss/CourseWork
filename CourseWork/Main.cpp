@@ -8,6 +8,8 @@
 #include "CustomIterator.h"
 #include "CustomException.h"
 #include "Menu.h"
+#include <cctype>
+#include <regex>
 
 using namespace std;
 
@@ -20,7 +22,7 @@ int main() {
 
 	cout << "It's an office application for editing and getting information about employees" << endl;
 
-	Osoba personOne("Сапса", "Юлія", "Петрівна", "11.02.2004", 'Ж');
+	Osoba personOne("Сапса", "Юлія", "Петрівна", "11.02.2004", "Ж");
 	cout << personOne.printPersonInfo() << endl;
 
 	/*Osoba personTwo("Гриців", "Ярина", "Ярославівна", "23.10.2003", 'Ж');
@@ -35,7 +37,9 @@ int main() {
 	cin >> person;
 	cout << person;*/
 
-	Osoba* o = new Coworker("Сапса", "Юлія", "Петрівна", "11.02.2004", 'Ж', 6, 23, 43, 1, 4.4);
+
+
+	Osoba* o = new Coworker("Сапса", "Юлія", "Петрівна", "11.02.2004", "Ж", 6, 23, 43, 1, 4.4);
 
 
 	cout << "Раннє зв'язування(прізвище працівника): " << personOne.GetPersonData() << endl;
@@ -44,8 +48,8 @@ int main() {
 	int size = 10;
 	Salary salary(size);
 
-	Coworker worker("Сапса", "Юлія", "Петрівна", "11.02.2004", 'Ж', 6, 23, 43, 150, 4.46);
-	Coworker worker1("Прокопів", "Андрій", "Андрійович", "23.11.2003", 'М', 3, 3.6, 3, 4, 45);
+	Coworker worker("Сапса", "Юлія", "Петрівна", "11.02.2004", "Ж", 6, 23, 43, 150, 4.46);
+	Coworker worker1("Прокопів", "Андрій", "Андрійович", "23.11.2003", "М", 3, 3.6, 3, 4, 45);
 
 	//cout << worker.printPersonInfo() << endl;
 	//cout << worker1.printPersonInfo() << endl;
