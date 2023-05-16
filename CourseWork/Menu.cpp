@@ -1,4 +1,5 @@
 ﻿#include "Menu.h"
+#include "Osoba.h"
 #include <cctype>
 
 using namespace std;
@@ -23,54 +24,131 @@ void Menu::changeOsobaData(Osoba& o)
 {
     int choice;
     do {
-        cout << "Що ви хочете змінити?" << endl;
-        cout << "1. Прізвище" << endl;
-        cout << "2. Ім'я" << endl;
-        cout << "3. По батькові" << endl;
-        cout << "4. Дата народження (у форматі ДД.ММ.РРРР):" << endl;
-        cout << "5. Стать" << endl;
-        cout << "6. Вивести змінені дані" << endl;
-        cout << "7. Повернутися до роботи з класом ОСОБА" << endl;
+        try {
+            cout << "Що ви хочете змінити?" << endl;
+            cout << "1. Прізвище" << endl;
+            cout << "2. Ім'я" << endl;
+            cout << "3. По батькові" << endl;
+            cout << "4. Дата народження (у форматі ДД.ММ.РРРР):" << endl;
+            cout << "5. Стать" << endl;
+            cout << "6. Вивести змінені дані" << endl;
+            cout << "7. Повернутися до роботи з класом ОСОБА" << endl;
 
-        string newValue;
-        checkInputValidity(choice);
+            string newValue;
+            checkInputValidity(choice);
 
-        switch (choice)
-        {
-        case 1:
-            cout << "Введіть нове прізвище: ";
-            cin >> newValue;
-            o.SetSurname(newValue);
-            break;
-        case 2:
-            cout << "Введіть нове ім'я: ";
-            cin >> newValue;
-            o.SetName(newValue);
-            break;
-        case 3:
-            cout << "Введіть нове по-батькові: ";
-            cin >> newValue;
-            o.SetMiddleName(newValue);
-            break;
-        case 4:
-            cout << "Введіть нову дату народження: ";
-            cin >> newValue;
-            o.SetBirthDate(newValue);
-            break;
-        case 5:
-            cout << "Введіть нову стать: ";
-            cin >> newValue;
-            o.SetGender(newValue);
-            break;
-        case 6:
-            cout << o;
-            break;
-        case 7:
-            return;
-        default:
-            throw CustomException("Неправильна опція, спробуйте ще раз");
-            break;
+            switch (choice) {
+            case 1:
+                do {
+                    try {
+                        cout << "Введіть нове прізвище: ";
+                        cin.ignore(); // Ігноруємо залишки з попереднього вводу
+                        std::getline(cin, newValue);
+
+                        // Перевірка умови для повторного введення
+                        if (newValue.find(' ') != std::string::npos) {
+                            throw CustomException("Прізвище не може містити пробіли. Спробуйте ще раз.");
+                        }
+                        else {
+                            o.SetSurname(newValue);
+                            break; // Вихід з циклу, якщо умова виконана
+                        }
+                    }
+                    catch (CustomException& ex) {
+                        cout << "Помилка: " << ex.what() << endl;
+                    }
+                } while (true); // Умова завжди true, оскільки переривання циклу відбувається внутрішнім break
+                break;
+
+            case 2:
+                do {
+                    try {
+                        cout << "Введіть нове ім'я: ";
+                        cin.ignore();
+                        std::getline(cin, newValue);
+
+                        // Перевірка умови для повторного введення
+                        if (newValue.find(' ') != std::string::npos) {
+                            throw CustomException("Ім'я не може містити пробіли. Спробуйте ще раз.");
+                        }
+                        else {
+                            o.SetName(newValue);
+                            break;
+                        }
+                    }
+                    catch (CustomException& ex) {
+                        cout << "Помилка: " << ex.what() << endl;
+                    }
+                } while (true);
+                break;
+
+            case 3:
+                do {
+                    try {
+                        cout << "Введіть нове по-батькові: ";
+                        cin.ignore();
+                        std::getline(cin, newValue);
+
+                        // Перевірка умови для повторного введення
+                        if (newValue.find(' ') != std::string::npos) {
+                            throw CustomException("По-батькові не може містити пробіли. Спробуйте ще раз.");
+                        }
+                        else {
+                            o.SetMiddleName(newValue);
+                            break;
+                        }
+                    }
+                    catch (CustomException& ex) {
+                        cout << "Помилка: " << ex.what() << endl;
+                    }
+                } while (true);
+                break;
+
+            case 4:
+                do {
+                    try {
+                        cout << "Введіть нову дату народження: ";
+                        cin >> newValue;
+                        o.SetBirthDate(newValue);
+                        break;
+                    }
+                    catch (CustomException& ex) {
+                        cout << "Помилка: " << ex.what() << endl;
+                    }
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Додано для видалення нового рядка після числа
+                } while (true);
+                break;
+
+            case 5:
+                do {
+                    try {
+                        cout << "Введіть нову стать: ";
+                        cin >> newValue;
+                        o.SetGender(newValue);
+                        break;
+                    }
+                    catch (CustomException& ex) {
+                        cout << "Помилка: " << ex.what() << endl;
+                    }
+                } while (true);
+                break;
+
+            case 6:
+                cout << o;
+                break;
+
+            case 7:
+                return;
+
+            default:
+                throw CustomException("Неправильна опція, спробуйте ще раз");
+                break;
+            }
         }
+        catch (CustomException& ex) {
+            cout << "Помилка: " << ex.what() << endl;
+        }
+        
     } while (choice != 7);
    
 }
@@ -121,7 +199,8 @@ void Menu::showOsobaFunctionality(int option)
                 break;
             case 3: {
                 string surname, name, middleName, birthDate, gender;
-                cout << "Прізвище: ";
+                
+                cout << "Прізвище" << endl;
                 cin >> surname;
                 cout << "Ім'я: ";
                 cin >> name;

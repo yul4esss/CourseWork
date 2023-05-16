@@ -21,23 +21,20 @@ Osoba::Osoba()
 
 Osoba::Osoba(std::string surname, std::string name, std::string middleName, std::string birthDate, std::string gender)
 {
-
-	this->surname = surname;
-	this->name = name;
-	this->middleName = middleName;
-	this->birthDate = birthDate;
-	this->gender = gender;
-
 	if (containsDigit(surname))
 		throw CustomException("Ïğ³çâèùå íå ïîâèííî ì³ñòèòè öèôğè");
+	this->surname = surname;
 	if (containsDigit(name))
 		throw CustomException("²ì'ÿ íå ïîâèííî ì³ñòèòè öèôğè");
+	this->name = name;
 	if (containsDigit(middleName))
 		throw CustomException("Ïî áàòüêîâ³ íå ïîâèííî ì³ñòèòè öèôğè");
-	/*if (gender != "×" && gender != "Æ")
-		throw CustomException("Ñòàòü ìàº áóòè âêàçàíà ÿê '×' àáî 'Æ'");*/
+	this->middleName = middleName;
 	checkDateFormat(birthDate);
-
+	this->birthDate = birthDate;
+	if (gender != "×" && gender != "Æ")
+	throw CustomException("Ñòàòü ìàº áóòè âêàçàíà ÿê '×' àáî 'Æ'");
+	this->gender = gender;
 }
 
 Osoba::Osoba(const Osoba& other)
@@ -64,35 +61,36 @@ bool Osoba::containsDigit(const std::string& value)
 // Ñåòòåğè äëÿ êëàñó Osoba
 void Osoba::SetSurname(string surname)
 {
-	this->surname = surname;
 	if (containsDigit(surname))
 		throw CustomException("Ïğ³çâèùå íå ïîâèííî ì³ñòèòè öèôğè");
+	this->surname = surname;
 
 }
 
 void Osoba::SetName(string name)
 {
-	this->name = name;
 	if (containsDigit(name))
 		throw CustomException("²ì'ÿ íå ïîâèííî ì³ñòèòè öèôğè");
+	this->name = name;
 }
 
 void Osoba::SetMiddleName(string middleName)
 {
-	this->middleName = middleName;
 	if (containsDigit(middleName))
 		throw CustomException("Ïî áàòüêîâ³ íå ïîâèííî ì³ñòèòè öèôğè");
+	this->middleName = middleName;
 }
 
 void Osoba::SetBirthDate(string birthDate)
 {
 	checkDateFormat(birthDate);
 	this->birthDate = birthDate;
-
 }
 
 void Osoba::SetGender(std::string gender)
 {
+	if (gender != "×" && gender != "Æ")
+		throw CustomException("Ñòàòü ìàº áóòè âêàçàíà ÿê '×' àáî 'Æ'");
 	this->gender = gender;
 }
 
@@ -135,10 +133,19 @@ std::string Osoba::printPersonInfo()
 // Ïåğåâàíòàæåííÿ ()
 void Osoba::operator()(std::string surname, std::string name, std::string middleName, std::string birthDate, std::string gender)
 {
+	if (containsDigit(surname))
+		throw CustomException("Ïğ³çâèùå íå ïîâèííî ì³ñòèòè öèôğè");
 	this->surname = surname;
+	if (containsDigit(name))
+		throw CustomException("²ì'ÿ íå ïîâèííî ì³ñòèòè öèôğè");
 	this->name = name;
+	if (containsDigit(middleName))
+		throw CustomException("Ïî áàòüêîâ³ íå ïîâèííî ì³ñòèòè öèôğè");
 	this->middleName = middleName;
+	checkDateFormat(birthDate);
 	this->birthDate = birthDate;
+	if (gender != "×" && gender != "Æ")
+		throw CustomException("Ñòàòü ìàº áóòè âêàçàíà ÿê '×' àáî 'Æ'");
 	this->gender = gender;
 }
 
